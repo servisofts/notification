@@ -12,9 +12,8 @@ public class Manejador {
         if (obj.isNull("component")) {
             return;
         }
-        // switch (obj.getString("component")) {
-           
-
-        // }
+        switch (obj.getString("component")) {
+            
+        }
     }
 }

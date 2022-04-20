@@ -1,4 +1,3 @@
-import org.json.JSONArray;
 import org.json.JSONObject;
 import Servisofts.SConsole;
 
@@ -22,11 +21,11 @@ public class ManejadorCliente {
     }
 
     public static void componentes(JSONObject data, JSONObject config) {
-        // switch (data.getString("component")) {
-        // case "usuario":
-        // usuario(data, config);
-        // break;
-        // }
+        switch (data.getString("component")) {
+            case "usuario":
+            
+            break;
+        }
     }
 
 }

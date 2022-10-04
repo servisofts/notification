@@ -16,7 +16,7 @@ class InicioPage extends Component {
         this.state = {
         };
     }
-       render() {
+    render() {
         // if (!Usuario.Actions.getUsuarioLogueado(this.props)) {
         //     SNavigation.replace("carga");
         //     return null;
@@ -25,15 +25,14 @@ class InicioPage extends Component {
         var camisa = require("./Images/camisa.jpg");
         return (
             <SPage
-                title="Servisofts - ZKTeco"
+                title="Servisofts - Notification"
             >
                 <SView col={"xs-12"} row center >
-                        {/* {this.getPaginas()} */}
+                    {/* {this.getPaginas()} */}
                 </SView>
 
                 <BotonesPaginas data={[
                     { label: "Servicios", url: "servicios", icon: "Servisofts" },
-                    { label: "Tipos de dispositivos", url: "tipo_dispositivo", icon: "Lock" },
                 ]} />
             </SPage>
         );

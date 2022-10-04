@@ -11,24 +11,24 @@
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
-		85DC4C6561CEDC15BD4C27E8 /* libPods-zkteco_app.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 46F0D055081F029C2FCAD5D1 /* libPods-zkteco_app.a */; };
+		85DC4C6561CEDC15BD4C27E8 /* libPods-notification_app.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 46F0D055081F029C2FCAD5D1 /* libPods-notification_app.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		008F07F21AC5B25A0029DE68 /* main.jsbundle */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = main.jsbundle; sourceTree = "<group>"; };
-		009359089565E6B4151D2871 /* libPods-zkteco_app-tvOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-zkteco_app-tvOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		13B07F961A680F5B00A75B9A /* zkteco_app.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = zkteco_app.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = zkteco_app/AppDelegate.h; sourceTree = "<group>"; };
-		13B07FB01A68108700A75B9A /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = zkteco_app/AppDelegate.m; sourceTree = "<group>"; };
-		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = zkteco_app/Images.xcassets; sourceTree = "<group>"; };
-		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = zkteco_app/Info.plist; sourceTree = "<group>"; };
-		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = zkteco_app/main.m; sourceTree = "<group>"; };
-		19694007EB853EC42C17FF8D /* libPods-zkteco_app-tvOSTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-zkteco_app-tvOSTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		46F0D055081F029C2FCAD5D1 /* libPods-zkteco_app.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-zkteco_app.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		50AE628FD6660FE7B65A258E /* Pods-zkteco_app.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-zkteco_app.release.xcconfig"; path = "Target Support Files/Pods-zkteco_app/Pods-zkteco_app.release.xcconfig"; sourceTree = "<group>"; };
-		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = zkteco_app/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		8F052C82BD49621EFFE245A7 /* Pods-zkteco_app.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-zkteco_app.debug.xcconfig"; path = "Target Support Files/Pods-zkteco_app/Pods-zkteco_app.debug.xcconfig"; sourceTree = "<group>"; };
-		CDC312C6D0AC626A2A76B402 /* libPods-zkteco_app-zkteco_appTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-zkteco_app-zkteco_appTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		009359089565E6B4151D2871 /* libPods-notification_app-tvOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-notification_app-tvOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		13B07F961A680F5B00A75B9A /* notification_app.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = notification_app.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = notification_app/AppDelegate.h; sourceTree = "<group>"; };
+		13B07FB01A68108700A75B9A /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = notification_app/AppDelegate.m; sourceTree = "<group>"; };
+		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = notification_app/Images.xcassets; sourceTree = "<group>"; };
+		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = notification_app/Info.plist; sourceTree = "<group>"; };
+		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = notification_app/main.m; sourceTree = "<group>"; };
+		19694007EB853EC42C17FF8D /* libPods-notification_app-tvOSTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-notification_app-tvOSTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		46F0D055081F029C2FCAD5D1 /* libPods-notification_app.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-notification_app.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		50AE628FD6660FE7B65A258E /* Pods-notification_app.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-notification_app.release.xcconfig"; path = "Target Support Files/Pods-notification_app/Pods-notification_app.release.xcconfig"; sourceTree = "<group>"; };
+		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = notification_app/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		8F052C82BD49621EFFE245A7 /* Pods-notification_app.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-notification_app.debug.xcconfig"; path = "Target Support Files/Pods-notification_app/Pods-notification_app.debug.xcconfig"; sourceTree = "<group>"; };
+		CDC312C6D0AC626A2A76B402 /* libPods-notification_app-notification_appTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-notification_app-notification_appTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		ED2971642150620600B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS12.0.sdk/System/Library/Frameworks/JavaScriptCore.framework; sourceTree = DEVELOPER_DIR; };
 /* End PBXFileReference section */
@@ -38,14 +38,14 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				85DC4C6561CEDC15BD4C27E8 /* libPods-zkteco_app.a in Frameworks */,
+				85DC4C6561CEDC15BD4C27E8 /* libPods-notification_app.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		13B07FAE1A68108700A75B9A /* zkteco_app */ = {
+		13B07FAE1A68108700A75B9A /* notification_app */ = {
 			isa = PBXGroup;
 			children = (
 				008F07F21AC5B25A0029DE68 /* main.jsbundle */,
@@ -56,7 +56,7 @@
 				81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */,
 				13B07FB71A68108700A75B9A /* main.m */,
 			);
-			name = zkteco_app;
+			name = notification_app;
 			sourceTree = "<group>";
 		};
 		2D16E6871FA4F8E400B85C8A /* Frameworks */ = {
@@ -64,10 +64,10 @@
 			children = (
 				ED297162215061F000B7C4FE /* JavaScriptCore.framework */,
 				ED2971642150620600B7C4FE /* JavaScriptCore.framework */,
-				46F0D055081F029C2FCAD5D1 /* libPods-zkteco_app.a */,
-				CDC312C6D0AC626A2A76B402 /* libPods-zkteco_app-zkteco_appTests.a */,
-				009359089565E6B4151D2871 /* libPods-zkteco_app-tvOS.a */,
-				19694007EB853EC42C17FF8D /* libPods-zkteco_app-tvOSTests.a */,
+				46F0D055081F029C2FCAD5D1 /* libPods-notification_app.a */,
+				CDC312C6D0AC626A2A76B402 /* libPods-notification_app-notification_appTests.a */,
+				009359089565E6B4151D2871 /* libPods-notification_app-tvOS.a */,
+				19694007EB853EC42C17FF8D /* libPods-notification_app-tvOSTests.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -75,8 +75,8 @@
 		730343C1BBA0FC7345F9E57B /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				8F052C82BD49621EFFE245A7 /* Pods-zkteco_app.debug.xcconfig */,
-				50AE628FD6660FE7B65A258E /* Pods-zkteco_app.release.xcconfig */,
+				8F052C82BD49621EFFE245A7 /* Pods-notification_app.debug.xcconfig */,
+				50AE628FD6660FE7B65A258E /* Pods-notification_app.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -91,7 +91,7 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
-				13B07FAE1A68108700A75B9A /* zkteco_app */,
+				13B07FAE1A68108700A75B9A /* notification_app */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
 				83CBBA001A601CBA00E9B192 /* Products */,
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
@@ -105,7 +105,7 @@
 		83CBBA001A601CBA00E9B192 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				13B07F961A680F5B00A75B9A /* zkteco_app.app */,
+				13B07F961A680F5B00A75B9A /* notification_app.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -113,9 +113,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		13B07F861A680F5B00A75B9A /* zkteco_app */ = {
+		13B07F861A680F5B00A75B9A /* notification_app */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "zkteco_app" */;
+			buildConfigurationList = 13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "notification_app" */;
 			buildPhases = (
 				3160DBA8BC0B0E40638DC01F /* [CP] Check Pods Manifest.lock */,
 				FD10A7F022414F080027D42C /* Start Packager */,
@@ -129,9 +129,9 @@
 			);
 			dependencies = (
 			);
-			name = zkteco_app;
-			productName = zkteco_app;
-			productReference = 13B07F961A680F5B00A75B9A /* zkteco_app.app */;
+			name = notification_app;
+			productName = notification_app;
+			productReference = 13B07F961A680F5B00A75B9A /* notification_app.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -149,7 +149,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "zkteco_app" */;
+			buildConfigurationList = 83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "notification_app" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -162,7 +162,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				13B07F861A680F5B00A75B9A /* zkteco_app */,
+				13B07F861A680F5B00A75B9A /* notification_app */,
 			);
 		};
 /* End PBXProject section */
@@ -209,7 +209,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-zkteco_app-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-notification_app-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -241,7 +241,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-zkteco_app/Pods-zkteco_app-resources.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-notification_app/Pods-notification_app-resources.sh",
 				"${PODS_CONFIGURATION_BUILD_DIR}/React-Core/AccessibilityResources.bundle",
 			);
 			name = "[CP] Copy Pods Resources";
@@ -250,7 +250,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-zkteco_app/Pods-zkteco_app-resources.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-notification_app/Pods-notification_app-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -270,7 +270,7 @@
 /* Begin XCBuildConfiguration section */
 		13B07F941A680F5B00A75B9A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 8F052C82BD49621EFFE245A7 /* Pods-zkteco_app.debug.xcconfig */;
+			baseConfigurationReference = 8F052C82BD49621EFFE245A7 /* Pods-notification_app.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -279,7 +279,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = MUBDVWB883;
 				ENABLE_BITCODE = NO;
-				INFOPLIST_FILE = zkteco_app/Info.plist;
+				INFOPLIST_FILE = notification_app/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (
 					"$(inherited)",
@@ -287,7 +287,7 @@
 					"-lc++",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = org.servisofts.calisteniav2;
-				PRODUCT_NAME = zkteco_app;
+				PRODUCT_NAME = notification_app;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
@@ -298,7 +298,7 @@
 		};
 		13B07F951A680F5B00A75B9A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 50AE628FD6660FE7B65A258E /* Pods-zkteco_app.release.xcconfig */;
+			baseConfigurationReference = 50AE628FD6660FE7B65A258E /* Pods-notification_app.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -306,7 +306,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = MUBDVWB883;
-				INFOPLIST_FILE = zkteco_app/Info.plist;
+				INFOPLIST_FILE = notification_app/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (
 					"$(inherited)",
@@ -314,7 +314,7 @@
 					"-lc++",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = org.servisofts.calisteniav2;
-				PRODUCT_NAME = zkteco_app;
+				PRODUCT_NAME = notification_app;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -440,7 +440,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "zkteco_app" */ = {
+		13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "notification_app" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				13B07F941A680F5B00A75B9A /* Debug */,
@@ -449,7 +449,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "zkteco_app" */ = {
+		83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "notification_app" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				83CBBA201A601CBA00E9B192 /* Debug */,

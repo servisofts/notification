@@ -129,7 +129,7 @@ android {
     }
 
     defaultConfig {
-        applicationId "com.zkteco_app"
+        applicationId "com.notification_app"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1

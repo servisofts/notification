@@ -1,4 +1,4 @@
-package com.zkteco_app;
+package com.notification_app;
 
 import com.facebook.react.ReactActivity;
 
@@ -10,6 +10,6 @@ public class MainActivity extends ReactActivity {
    */
   @Override
   protected String getMainComponentName() {
-    return "zkteco_app";
+    return "notification_app";
   }
 }

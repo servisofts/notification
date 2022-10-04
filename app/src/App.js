@@ -35,7 +35,7 @@ const App = (props) => {
                 <SNavigation props={{
                     prefixes: ["https://component.servisofts.com", "component.servisofts://"],
                     pages: Pages,
-                    title:"SS-ZKTeco"
+                    title:"SS-Notification"
                 }} />
                 <SSocket identificarse={(props) => {
                     var usuario = props.state.usuarioReducer.usuarioLog;

@@ -3,7 +3,7 @@
     "socket_client": {
         "servicio": {
             "puerto": 10001,
-            "ip": "servicio.ss.lo",
+            "ip": "192.168.5.1",
             "cert": {
                 "OU": "servicio",
                 "pem": "servicio.pem"
@@ -17,7 +17,7 @@
     "data_base": {
         "puerto": 5432,
         "pass": "postgres",
-        "ip": "notification.ss.lo",
+        "ip": "192.168.5.33",
         "bd_name": "servisofts.notification",
         "user": "postgres"
     },

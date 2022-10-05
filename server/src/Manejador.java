@@ -1,4 +1,7 @@
 import Servisofts.SConsole;
+import component.FirebaseServer;
+import component.FirebaseToken;
+
 import org.json.JSONObject;
 import Server.SSSAbstract.SSSessionAbstract;
 
@@ -13,7 +16,12 @@ public class Manejador {
             return;
         }
         switch (obj.getString("component")) {
-            
+            case FirebaseServer.COMPONENT:
+                FirebaseServer.onMessage(obj, session);
+                break;
+            case FirebaseToken.COMPONENT:
+                FirebaseToken.onMessage(obj, session);
+                break;
         }
     }
 }

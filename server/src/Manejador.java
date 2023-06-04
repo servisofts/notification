@@ -1,6 +1,7 @@
 import Servisofts.SConsole;
 import component.FirebaseServer;
 import component.FirebaseToken;
+import component.Notification;
 
 import org.json.JSONObject;
 import Server.SSSAbstract.SSSessionAbstract;
@@ -21,6 +22,9 @@ public class Manejador {
                 break;
             case FirebaseToken.COMPONENT:
                 FirebaseToken.onMessage(obj, session);
+                break;
+            case Notification.COMPONENT:
+                Notification.onMessage(obj, session);
                 break;
         }
     }

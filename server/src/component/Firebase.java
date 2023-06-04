@@ -46,7 +46,7 @@ public class Firebase {
     }
 
     public static void send(String key_servicio, String title, String body){
-        
+        try{
             JSONObject fb_token = FirebaseToken.getAll(key_servicio);
             String tokens_[] = JSONObject.getNames(fb_token);
 
@@ -69,6 +69,10 @@ public class Firebase {
                 message.put("to",  fb_token.getJSONObject(tokens_[i]).getString("token") );  
                 Firebase._send(fb_server.getString("key_server"),message);
             }
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+            
 
     }
 }

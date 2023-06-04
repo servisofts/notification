@@ -1,4 +1,5 @@
 import Servisofts.SConsole;
+import component.Enviroment;
 import component.FirebaseServer;
 import component.FirebaseToken;
 import component.Notification;
@@ -25,6 +26,9 @@ public class Manejador {
                 break;
             case Notification.COMPONENT:
                 Notification.onMessage(obj, session);
+                break;
+            case Enviroment.COMPONENT:
+                Enviroment.onMessage(obj, session);
                 break;
         }
     }

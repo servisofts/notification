@@ -9,6 +9,9 @@ import java.net.URL;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import Servisofts.SPGConect;
+import Servisofts.SUtil;
+
 public class Firebase {
     
     public static boolean _send(String apiKeyServer, JSONObject message){
@@ -45,7 +48,7 @@ public class Firebase {
         }
     }
 
-    public static void send(String key_servicio, String title, String body){
+    /*public static void send(String key_servicio, String title, String body){
         try{
             JSONObject fb_token = FirebaseToken.getAll(key_servicio);
             String tokens_[] = JSONObject.getNames(fb_token);
@@ -72,7 +75,48 @@ public class Firebase {
         }catch(Exception e){
             e.printStackTrace();
         }
-            
+    }*/
 
+    public static void send(String token, String title, String body){
+        try{
+        
+
+            JSONObject firebaseToken = FirebaseToken.get(token);
+            firebaseToken = firebaseToken.getJSONObject(JSONObject.getNames(firebaseToken)[0]);
+            String key_servicio = firebaseToken.getString("key_servicio");
+            JSONObject fb_server = FirebaseServer.getByKey(key_servicio);
+            fb_server = fb_server.getJSONObject(JSONObject.getNames(fb_server)[0]);
+
+            JSONObject message = new JSONObject();
+            message.put("priority", "high");
+            message.put("contentAvailable", true);
+            //
+
+            JSONObject notification = new JSONObject();
+            notification.put("title", title);
+            notification.put("body", body);
+            notification.put("sound", "default");
+
+            message.put("notification", notification);
+            message.put("to",  token);  
+
+            JSONObject data = new JSONObject();
+            data.put("key", SUtil.uuid());
+            data.put("estado", 1);
+            data.put("descripcion", title);
+            data.put("observacion", body);
+            data.put("fecha_on", SUtil.now());
+            data.put("key_firebase_token", firebaseToken.getString("key"));
+            data.put("key_servicio", firebaseToken.getString("key_servicio"));
+            if(firebaseToken.has("key_usuario") && !firebaseToken.isNull("key_usuario") && firebaseToken.getString("key_usuario").length()>0){
+                data.put("key_usuario", firebaseToken.getString("key_usuario"));
+            }
+            
+            SPGConect.insertArray("notification", new JSONArray().put(data));
+
+            Firebase._send(fb_server.getString("key_server"),message);
+        }catch(Exception e){
+            e.printStackTrace();
+        }
     }
 }

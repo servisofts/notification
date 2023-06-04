@@ -1,27 +1,16 @@
-import { SPageListProps } from 'servisofts-component'
+import { SPage, SPageListProps } from 'servisofts-component';
 
-import InicioPage from "./InicioPage";
-import CargaPage from './CargaPage/index';
-import Usuario from './Usuario';
-import AjustesPage from './AjustesPage';
-import Servicios from './Servicios';
-import CabeceraDato from './CabeceraDato';
-
-import Services from '../Services';
-const Pages: SPageListProps = {
-    "inicio": InicioPage,
-    "carga": CargaPage,
-    AjustesPage,
-    ...Usuario.Pages,
-    ...Servicios.Pages,
-    ...CabeceraDato.Pages,
-    ...Services.Pages
-}
-
-
-export const Reducers = {
-    ...Usuario.Reducers,
-    ...Servicios.Reducers,
-    ...CabeceraDato.Reducers
-}
-export default Pages;
+import Root from './root';
+import ajustes from './ajustes';
+import servicio from './servicio';
+import firebase_server from './firebase_server';
+import firebase_token from './firebase_token';
+import notification from "./notification"
+export default SPage.combinePages("/", {
+    "": Root,
+    ...servicio,
+    ...ajustes,
+    ...firebase_server,
+    ...firebase_token,
+    ...notification
+});

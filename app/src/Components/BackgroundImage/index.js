@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
-import { View, Text, Platform } from 'react-native';
-import { SImage } from 'servisofts-component';
-//import Gradient from './Gradient'
-import BackgroundGradient from './backgroundGradient'
+import { View } from 'react-native';
+import { SImage, STheme } from 'servisofts-component';
 type type = {
     source: Object,
     contraste: String
@@ -17,7 +15,11 @@ export default class BackgroundImage extends Component<type> {
     getBackground = () => {
         var source = this.props.source;
         if (!source) {
-            source = require("./background.png");
+            if (STheme.getTheme() == 'dark') {
+                source = require("./dark.jpg");
+            } else {
+                source = require("./default.jpg");
+            }
         }
         return <View style={{
             width: "100%",
@@ -26,23 +28,15 @@ export default class BackgroundImage extends Component<type> {
             left: 0,
             position: "absolute",
             // opacity: 0.8,
-            // backgroundColor: "#000",
             ...this.props.style,
         }}>
-            <BackgroundGradient style={{ 
-                width: "100%",
-                height: "100%",
-                resizeMode: "fill",
-                
-                }}/>
-
-            {/* <SImage src={source} style={{
+            {/* <SGradient colors={["#000000", "#44000044"]} /> */}
+            <SImage src={source} style={{
                 width: "100%",
                 height: "100%",
                 resizeMode: "cover",
                 opacity: 0.6,
-            }} />  */}
-
+            }} />
             {/* <View style={{
                 width: "100%",
                 height: "100%",

@@ -1,53 +1,44 @@
 import React from 'react';
-import { Text, TouchableOpacity, View } from 'react-native';
-import { SComponentContainer, SIcon, SNavigation, SView } from 'servisofts-component';
-import Pages from './Pages';
+import { SComponentContainer, SNavigation } from 'servisofts-component';
+import SSocket, { setProps } from 'servisofts-socket';
+import Redux, { store } from './Redux';
+import Config from "./Config";
 import Assets from './Assets';
-
-//---------REDUX----------
-import Reducer from './Reducer';
-import { createStore, applyMiddleware } from 'redux';
-import { Provider } from 'react-redux';
-import reduxThunk from 'redux-thunk';
-// import SSocket from './SSocket';
-//------------------------
-import SConfig from './SConfig';
-import SSocket, { setProps } from 'servisofts-socket'
+import Pages from './Pages';
 import BackgroundImage from './Components/BackgroundImage';
 import NavBar from './Components/NavBar';
-setProps(SConfig.SocketProps);
 
-const store = createStore(
-    Reducer,
-    {},
-    applyMiddleware(reduxThunk),
-);
+
+setProps(Config.socket);
 
 const App = (props) => {
-    return (
-        <Provider store={store}>
-            <SComponentContainer
-                debug
-                socket={SSocket}
-                assets={Assets}
-                background={<BackgroundImage />}
-                theme={{ initialTheme: "dark", themes: SConfig.SThemeProps }}>
-                <SNavigation props={{
-                    prefixes: ["https://component.servisofts.com", "component.servisofts://"],
-                    pages: Pages,
-                    title:"SS-Notification"
-                }} />
-                <SSocket identificarse={(props) => {
-                    var usuario = props.state.usuarioReducer.usuarioLog;
+    return <Redux>
+        <SComponentContainer
+            debug
+            socket={SSocket}
+            background={<BackgroundImage />}
+            assets={Assets}
+            inputs={Config.inputs}
+            theme={{ themes: Config.theme, initialTheme: "dark" }}
+        >
+            <SNavigation
+
+                props={{
+                    navBar: NavBar,
+                    title: 'notification_app', pages: Pages
+                }}
+            />
+            <SSocket
+                store={store}
+                identificarse={(props) => {
+                    var usuario = props?.state?.usuarioReducer?.usuarioLog;
                     return {
                         data: usuario ? usuario : {},
-                        deviceKey: "as-asa-as",
-                    }
-                }} />
-                {/* <NavBar /> */}
-                {/* <SSRolesPermisos /> */}
-            </SComponentContainer>
-        </Provider>
-    )
+                        deviceKey: 'as-asa-as'
+                    };
+                }}
+            />
+        </SComponentContainer>
+    </Redux>
 }
 export default App;

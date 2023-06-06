@@ -23,16 +23,18 @@ public class Firebase {
 
             con.setRequestProperty("Content-Length", Integer.toString(message.toString().getBytes().length));
             con.setRequestProperty("Content-Type", "application/json");
+            con.setRequestProperty("charset", "UTF-16");
             con.setRequestProperty("Authorization", "key="+apiKeyServer);
+            
 
             con.setUseCaches(false);
             con.setDoOutput(true);
 
             DataOutputStream out = new DataOutputStream(con.getOutputStream());
-            out.writeBytes(message.toString());
+            out.write(message.toString().getBytes());
             out.close();
 
-            BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()));
+            BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream(), "UTF-16"));
             String inputLine;
             StringBuffer content = new StringBuffer();
             while ((inputLine = in.readLine()) != null) {
@@ -40,7 +42,7 @@ public class Firebase {
             }
             in.close();
             con.disconnect();
-            System.out.println(content);
+            System.out.println(content.toString());
             return true;
         }catch(Exception e){
             System.out.println(e.getLocalizedMessage());
@@ -96,6 +98,7 @@ public class Firebase {
             notification.put("title", title);
             notification.put("body", body);
             notification.put("sound", "default");
+            notification.put("image", "https://ruddy.ibrokers.cloud/imagesAdmin/6340999");
 
             message.put("notification", notification);
             message.put("to",  token);  

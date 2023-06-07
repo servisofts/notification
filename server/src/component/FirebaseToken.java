@@ -113,7 +113,7 @@ public class FirebaseToken {
             firebaseToken.put("ultima_conexion", SUtil.now());
             SPGConect.editObject(COMPONENT, firebaseToken);
 
-            Firebase.send(firebase.getString("token"), "PRobando", "Tranquilo solo es una prueba");
+            //Firebase.send(firebase.getString("token"), "PRobando", "Tranquilo solo es una prueba");
 
             obj.put("data", firebaseToken);
             obj.put("estado", "exito");

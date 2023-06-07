@@ -72,6 +72,19 @@ public class Notification {
             e.printStackTrace();
         }
     }
+    
+    public static void sendAll(JSONObject obj, SSSessionAbstract session) {
+        try {
+            JSONObject data = obj.getJSONObject("data");
+            Firebase.send(data.getString("token"), data.getString("descripcion"), data.getString("observacion"));
+            obj.put("data", data);
+            obj.put("estado", "exito");
+        } catch (Exception e) {
+            obj.put("estado", "error");
+            obj.put("error", e.getMessage());
+            e.printStackTrace();
+        }
+    }
 
     public static void registroAll(JSONObject obj, SSSessionAbstract session) {
         try {
@@ -128,5 +141,6 @@ public class Notification {
             e.printStackTrace();
         }
     }
+    
 
 }

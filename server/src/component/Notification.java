@@ -20,6 +20,9 @@ public class Notification {
             case "registro":
                 registro(obj, session);
                 break;
+            case "send":
+                send(obj, session);
+                break;
             case "registroAll":
                 registroAll(obj, session);
                 break;
@@ -77,6 +80,40 @@ public class Notification {
         try {
             JSONObject data = obj.getJSONObject("data");
             Firebase.send(data.getString("token"), data.getString("descripcion"), data.getString("observacion"));
+            obj.put("data", data);
+            obj.put("estado", "exito");
+        } catch (Exception e) {
+            obj.put("estado", "error");
+            obj.put("error", e.getMessage());
+            e.printStackTrace();
+        }
+    }
+
+    public static void send(JSONObject obj, SSSessionAbstract session) {
+        try {
+
+
+            JSONObject tokens;
+            
+            if(obj.has("key_usuario") && !obj.isNull("key_usuario"))
+                tokens = FirebaseToken.getAllUsuario(obj.getString("key_usuario"));
+            else
+                tokens = FirebaseToken.getAll(obj.getJSONObject("servicio").getString("key"));
+            
+
+            String token;
+            JSONObject data = obj.getJSONObject("data");
+
+            for (int i = 0; i < JSONObject.getNames(tokens).length; i++) {
+                token = tokens.getJSONObject(JSONObject.getNames(tokens)[i]).getString("token");
+                if(data.has("url_image") && !data.isNull("url_image")){
+                    Firebase.send(token, data.getString("descripcion"), data.getString("observacion"), data.getString("url_image"));
+                }else{
+                    Firebase.send(token, data.getString("descripcion"), data.getString("observacion"));
+                }
+            }
+
+            
             obj.put("data", data);
             obj.put("estado", "exito");
         } catch (Exception e) {

@@ -122,4 +122,50 @@ public class Firebase {
             e.printStackTrace();
         }
     }
+
+    public static void send(String token, String title, String body, String url_image){
+        try{
+        
+
+            JSONObject firebaseToken = FirebaseToken.get(token);
+            firebaseToken = firebaseToken.getJSONObject(JSONObject.getNames(firebaseToken)[0]);
+            String key_servicio = firebaseToken.getString("key_servicio");
+            JSONObject fb_server = FirebaseServer.getByKey(key_servicio);
+            fb_server = fb_server.getJSONObject(JSONObject.getNames(fb_server)[0]);
+
+            JSONObject message = new JSONObject();
+            message.put("priority", "high");
+            message.put("contentAvailable", true);
+            //
+
+            JSONObject notification = new JSONObject();
+            notification.put("title", title);
+            notification.put("body", body);
+            notification.put("sound", "default");
+            notification.put("image", url_image);
+
+            message.put("notification", notification);
+            message.put("to",  token);  
+
+            JSONObject data = new JSONObject();
+            data.put("key", SUtil.uuid());
+            data.put("estado", 1);
+            data.put("descripcion", title);
+            data.put("observacion", body);
+            data.put("fecha_on", SUtil.now());
+            data.put("key_firebase_token", firebaseToken.getString("key"));
+            data.put("key_servicio", firebaseToken.getString("key_servicio"));
+            if(firebaseToken.has("key_usuario") && !firebaseToken.isNull("key_usuario") && firebaseToken.getString("key_usuario").length()>0){
+                data.put("key_usuario", firebaseToken.getString("key_usuario"));
+            }
+            
+            SPGConect.insertArray("notification", new JSONArray().put(data));
+
+            Firebase._send(fb_server.getString("key_server"),message);
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+    }
+
+    
 }

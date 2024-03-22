@@ -1,5 +1,7 @@
 package component;
 
+import java.sql.SQLException;
+
 import org.json.JSONArray;
 import org.json.JSONObject;
 import Server.SSSAbstract.SSSessionAbstract;
@@ -32,6 +34,23 @@ public class FirebaseToken {
             String consulta = "select get_all('" + COMPONENT + "', 'key_servicio', '"+key_servicio+"') as json";
             return SPGConect.ejecutarConsultaObject(consulta);
         } catch (Exception e) {
+            return null;
+        }
+    }
+
+    public static JSONObject getByTags(JSONObject tags, String key_servicio) {
+        try{
+            String consulta = "SELECT jsonb_object_agg(firebase_token.key, to_json(firebase_token.*))::json as json \n" + //
+                "FROM public.firebase_token\n" + //
+                "where firebase_token.estado > 0\n" + //
+                "and firebase_token.key_servicio = '"+key_servicio+"'\n" ; //
+                
+                for (int i = 0; i < JSONObject.getNames(tags).length; i++) {
+                    consulta += "and firebase_token.tags ->>'"+JSONObject.getNames(tags)[i]+"' = '"+tags.get(JSONObject.getNames(tags)[i])+"'\n";
+                }
+            return SPGConect.ejecutarConsultaObject(consulta);
+        }catch(Exception e){
+            e.printStackTrace();
             return null;
         }
     }
@@ -114,6 +133,10 @@ public class FirebaseToken {
                 firebaseToken.put("key_usuario", key_usuario);
             }else{
                 firebaseToken.put("key_usuario", "");
+            }
+
+            if(firebase.has("tags")){
+                firebaseToken.put("tags", firebase.get("tags"));
             }
 
             if(firebase.has("descripcion")){

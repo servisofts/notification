@@ -31,7 +31,7 @@ public class Task extends Thread {
     private void timeoutToken() {
         try {
             FirebaseToken.vencer();
-           System.out.println("vERNCER");
+           //System.out.println("vERNCER");
         } catch (Exception e) {
             e.printStackTrace();
         }

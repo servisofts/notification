@@ -1,5 +1,7 @@
 package component;
 
+import java.util.Date;
+
 import org.json.JSONArray;
 import org.json.JSONObject;
 import Servisofts.SPGConect;
@@ -40,6 +42,15 @@ public class Notification {
             }else{
                 consulta = "select get_all('" + COMPONENT + "', 'key_servicio', '"+obj.getJSONObject("servicio").getString("key")+"','key_usuario', '"+obj.getString("key_usuario")+"' ) as json";
             }
+
+            if(obj.has("key_usuario") && obj.has("limit")){
+                consulta = "select get_all_limit('"+obj.getString("key_usuario")+"','"+obj.getJSONObject("servicio").getString("key")+"', '"+obj.get("limit")+"' ) as json";
+            }
+
+            if(obj.has("key_usuario") && obj.has("limit") && obj.has("offset")){
+                consulta = "select get_all_limit('"+obj.getString("key_usuario")+"','"+obj.getJSONObject("servicio").getString("key")+"', '"+obj.get("limit")+"', '"+obj.get("offset")+"' ) as json";
+            }
+
             JSONObject data = SPGConect.ejecutarConsultaObject(consulta);
             obj.put("data", data);
             obj.put("estado", "exito");
@@ -66,7 +77,11 @@ public class Notification {
     public static void registro(JSONObject obj, SSSessionAbstract session) {
         try {
             JSONObject data = obj.getJSONObject("data");
-            Firebase.send(data.getString("token"), data.getString("descripcion"), data.getString("observacion"));
+            JSONObject dta = new JSONObject();
+            if(data.has("data") && !data.isNull("data")){
+                dta = data.getJSONObject("data");
+            }
+            Firebase.send(data.getString("token"), data.getString("descripcion"), data.getString("observacion"),dta);
             obj.put("data", data);
             obj.put("estado", "exito");
         } catch (Exception e) {
@@ -79,7 +94,11 @@ public class Notification {
     public static void sendAll(JSONObject obj, SSSessionAbstract session) {
         try {
             JSONObject data = obj.getJSONObject("data");
-            Firebase.send(data.getString("token"), data.getString("descripcion"), data.getString("observacion"));
+            JSONObject dta = new JSONObject();
+            if(data.has("data") && !data.isNull("data")){
+                dta = data.getJSONObject("data");
+            }
+            Firebase.send(data.getString("token"), data.getString("descripcion"), data.getString("observacion"),dta);
             obj.put("data", data);
             obj.put("estado", "exito");
         } catch (Exception e) {
@@ -92,29 +111,41 @@ public class Notification {
     public static void send(JSONObject obj, SSSessionAbstract session) {
         try {
 
-
-            JSONObject tokens;
-            
-            if(obj.has("key_usuario") && !obj.isNull("key_usuario"))
-                tokens = FirebaseToken.getAllUsuario(obj.getString("key_usuario"));
-            else
-                tokens = FirebaseToken.getAll(obj.getJSONObject("servicio").getString("key"));
-            
-
-            String token;
             JSONObject data = obj.getJSONObject("data");
 
-            for (int i = 0; i < JSONObject.getNames(tokens).length; i++) {
-                token = tokens.getJSONObject(JSONObject.getNames(tokens)[i]).getString("token");
-                if(data.has("url_image") && !data.isNull("url_image")){
-                    Firebase.send(token, data.getString("descripcion"), data.getString("observacion"), data.getString("url_image"));
-                }else{
-                    Firebase.send(token, data.getString("descripcion"), data.getString("observacion"));
+            final JSONObject tokens;
+                
+            if(obj.has("key_usuario") && !obj.isNull("key_usuario"))
+                tokens = FirebaseToken.getAllUsuario(obj.getString("key_usuario"));
+            else if(obj.has("tags") && !obj.isNull("tags"))
+                tokens = FirebaseToken.getByTags(obj.getJSONObject("tags"), obj.getJSONObject("servicio").getString("key"));
+            else
+                tokens = FirebaseToken.getAll(obj.getJSONObject("servicio").getString("key"));
+                
+            new Thread(() -> {
+
+                String token;
+                
+                if(!tokens.isEmpty()){
+                    for (int i = 0; i < JSONObject.getNames(tokens).length; i++) {
+                        token = tokens.getJSONObject(JSONObject.getNames(tokens)[i]).getString("token");
+                        JSONObject dta = new JSONObject();
+                        if(data.has("data") && !data.isNull("data")){
+                            dta = data.getJSONObject("data");
+                        }
+                        if(data.has("url_image") && !data.isNull("url_image")){
+                            Firebase.send(token, data.getString("descripcion"), data.getString("observacion"), dta,data.getString("url_image"));
+                        }else{
+                            Firebase.send(token, data.getString("descripcion"), data.getString("observacion"),dta);
+                        }
+                    }
                 }
-            }
+            }).start();;
+            
+            
 
             
-            obj.put("data", data);
+            obj.put("data", tokens.isEmpty()?0:JSONObject.getNames(tokens).length);
             obj.put("estado", "exito");
         } catch (Exception e) {
             obj.put("estado", "error");
@@ -155,7 +186,7 @@ public class Notification {
             firebaseToken.put("ultima_conexion", SUtil.now());
             SPGConect.editObject(COMPONENT, firebaseToken);
 
-            Firebase.send(firebase.getString("token"), "PRobando", "Tranquilo solo es una prueba");
+            Firebase.send(firebase.getString("token"), "PRobando", "Tranquilo solo es una prueba", new JSONObject());
 
             obj.put("data", firebaseToken);
             obj.put("estado", "exito");

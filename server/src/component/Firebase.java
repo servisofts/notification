@@ -79,7 +79,7 @@ public class Firebase {
         }
     }*/
 
-    public static void send(String token, String title, String body){
+    public static void send(String token, String title, String body, JSONObject dta){
         try{
         
 
@@ -98,10 +98,11 @@ public class Firebase {
             notification.put("title", title);
             notification.put("body", body);
             notification.put("sound", "default");
-            notification.put("image", "https://ruddy.ibrokers.cloud/imagesAdmin/6340999");
+            //notification.put("image", "https://ruddy.ibrokers.cloud/imagesAdmin/6340999");
 
             message.put("notification", notification);
             message.put("to",  token);  
+            message.put("data", dta);
 
             JSONObject data = new JSONObject();
             data.put("key", SUtil.uuid());
@@ -123,7 +124,7 @@ public class Firebase {
         }
     }
 
-    public static void send(String token, String title, String body, String url_image){
+    public static void send(String token, String title, String body, JSONObject dta,String url_image){
         try{
         
 
@@ -146,6 +147,7 @@ public class Firebase {
 
             message.put("notification", notification);
             message.put("to",  token);  
+            message.put("data", dta);
 
             JSONObject data = new JSONObject();
             data.put("key", SUtil.uuid());

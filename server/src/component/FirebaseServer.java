@@ -72,7 +72,7 @@ public class FirebaseServer {
     public static void send(JSONObject obj, SSSessionAbstract session) {
         try {
             JSONObject data = obj.getJSONObject("data");
-            Firebase.send(obj.getJSONObject("servicio").getString("key"), data.getString("title"), data.getString("body"));
+            Firebase.send(obj.getJSONObject("servicio").getString("key"), data.getString("title"), data.getString("body"), new JSONObject());
             obj.put("data", data);
             obj.put("estado", "exito");
         } catch (Exception e) {

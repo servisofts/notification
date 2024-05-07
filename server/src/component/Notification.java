@@ -33,7 +33,7 @@ public class Notification {
             case "sendV2":
                 sendV2(obj, session);
                 break;
-                case "sendType":
+            case "sendType":
                 sendType(obj, session);
                 break;
             case "registroAll":
@@ -141,10 +141,16 @@ public class Notification {
             JSONObject data = obj.getJSONObject("data");
 
             final JSONObject tokens;
+
+            String keyServicio = obj.getJSONObject("servicio").getString("key");
+            if(obj.has("key_servicio") && !obj.isNull("key_servicio")){
+                keyServicio = obj.getString("key_servicio");
+            }
+
                 
             if(obj.has("key_usuario") && !obj.isNull("key_usuario")) tokens = FirebaseToken.getAllUsuario(obj.getString("key_usuario"));
-            else if(obj.has("tags") && !obj.isNull("tags")) tokens = FirebaseToken.getByTags(obj.getJSONObject("tags"), obj.getJSONObject("servicio").getString("key"));
-            else tokens = FirebaseToken.getAll(obj.getJSONObject("servicio").getString("key"));
+            else if(obj.has("tags") && !obj.isNull("tags")) tokens = FirebaseToken.getByTags(obj.getJSONObject("tags"), keyServicio);
+            else tokens = FirebaseToken.getAll(keyServicio);
                 
             final String title = data.getString("descripcion"); 
             final String body = data.getString("observacion"); 
@@ -222,7 +228,9 @@ public class Notification {
             
             final String title = processParam(notificationDefault.getString("title"), obj.getJSONObject("data")); 
 
-            final String body = processParam(notificationDefault.getString("body"), obj.getJSONObject("data"));
+            final String body = (Util.getStringJSONObject(notificationDefault, "body") != null)  
+                                    ? processParam(notificationDefault.getString("body"), obj.getJSONObject("data"))
+                                    : "";
 
             JSONObject data = new JSONObject();
             
@@ -232,6 +240,10 @@ public class Notification {
             if(obj.has("key_empresa")){
                 data.put("key_empresa", obj.getString("key_empresa"));
             }
+            if(obj.getJSONObject("data").has("razon_social")){
+                data.put("razon_social", obj.getJSONObject("data").getString("razon_social"));
+            }
+            
             String aux = "";
             if(notificationDefault.has("image") && !notificationDefault.isNull("image")){
                 data.put("image", processParam(notificationDefault.getString("image"), obj.getJSONObject("data")));
@@ -245,7 +257,10 @@ public class Notification {
 
             new Thread(() -> {
 
-                Firebase.sendAll(obj.getString("key_usuario_emisor"), title, body, dta, url_image, tokens);
+                Firebase.sendAll(
+                    obj.has("key_usuario_emisor") ? obj.getString("key_usuario_emisor") : "", 
+                    title, body, dta, url_image, tokens
+                );
 
 
 

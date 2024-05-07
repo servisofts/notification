@@ -15,7 +15,7 @@ import Servisofts.SUtil;
 
 public class Firebase {
 
-    public static boolean _send(String apiKeyServer, JSONObject message) {
+    public static JSONObject _send(String apiKeyServer, JSONObject message) {
         try {
 
             URL url = new URL("https://fcm.googleapis.com/fcm/send");
@@ -34,7 +34,7 @@ public class Firebase {
             out.write(message.toString().getBytes());
             out.close();
 
-            BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream(), "UTF-16"));
+            BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream(), "UTF-8"));
             String inputLine;
             StringBuffer content = new StringBuffer();
             while ((inputLine = in.readLine()) != null) {
@@ -43,10 +43,13 @@ public class Firebase {
             in.close();
             con.disconnect();
             System.out.println(content.toString());
-            return true;
+            JSONObject resp = new JSONObject(content.toString());
+            return resp;
+            // System.out.println(content.toString());
+            // return true;
         } catch (Exception e) {
             System.out.println(e.getLocalizedMessage());
-            return false;
+            return new JSONObject();
         }
     }
 
@@ -196,7 +199,13 @@ public class Firebase {
             JSONObject token_object = null;
             JSONObject fb_server = null;
             JSONObject firebaseToken = null;
+
+            if (tokens == null || tokens.isEmpty()) {
+                return;
+            }
+
             for (int i = 0; i < JSONObject.getNames(tokens).length; i++) {
+
                 token_object = tokens.getJSONObject(JSONObject.getNames(tokens)[i]);
                 token = token_object.getString("token");
 
@@ -232,18 +241,20 @@ public class Firebase {
                 notification.put("sound", "default");
                 dta.getJSONObject("data").put("sound", "default");
 
-                notification.put("android_channel_id", "default_channel_id");
-
                 JSONObject apns = new JSONObject();
 
                 if (url_image.length() > 0) {
                     notification.put("image", url_image);
                     dta.getJSONObject("data").put("image", url_image);
 
-                    JSONObject fcm_options = new JSONObject().put("image", url_image);
-                    apns.put("fcm_options", fcm_options);
-                    JSONObject payload = new JSONObject().put("aps", new JSONObject().put("mutable-content", 1));
+                    JSONObject fcm_options = new JSONObject().put("imageUrl", url_image);
+                    // apns.put("fcm_options", fcm_options);
+
+                    JSONObject payload = new JSONObject().put("aps",
+                            new JSONObject().put("mutable-content", 1).put("content-available", "true"));
+                    payload.put("fcm_options", fcm_options);
                     apns.put("payload", payload);
+                    payload.put("imageUrl", url_image);
                 }
 
                 // JSONObject android_n = new JSONObject();
@@ -263,24 +274,64 @@ public class Firebase {
 
                 JSONObject message = new JSONObject();
                 message.put("priority", "high");
+                notification.put("priority", "high");
 
                 message.put("content_available", true);
                 message.put("mutable_content", true);
-                if (!token_object.has("platform") || !token_object.getString("platform").equals("android")) {
-                    message.put("notification", notification);
-                    message.put("apns", apns);
-                }
-
+                
                 message.put("to", token);
                 message.put("data", dta.getJSONObject("data"));
 
-                Firebase._send(fb_server.getString("key_server"), message);
-                System.out.println(message);
+                if (token_object.has("platform")) {
+                    if (token_object.getString("platform").equals("android")) {
+                        notification.put("android_channel_id", "default_channel_id");
+                    }
+                    if (token_object.getString("platform").equals("ios")) {
+                        message.put("notification", notification);
+                        message.put("apns", apns);
+                    }
+                } else {
+                    message.put("notification", notification);
+                }
+                // else {
+                // JSONObject android_notifify = new JSONObject();
+                // android_notifify.put("to", token);
+                // android_notifify.put("data", new JSONObject().put("title", "Verificando
+                // notificaciones...")
+                // .put("body", "Despertando el servicio..."));
+                // JSONObject resp = Firebase._send(fb_server.getString("key_server"),
+                // android_notifify);
+                // if (resp.getInt("failure") > 0) {
+                // System.out.println("Error al enviar notificacion a " + token);
+                // } else {
+                // sendAsync(fb_server, message, 5000);
+                // }
+                // continue;
+                // // Thread.sleep(10000);
+
+                // }
+
+                sendAsync(fb_server, message, 0);
+
+                // Firebase._send(fb_server.getString("key_server"), message);
+                // System.out.println(message);
             }
 
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    private static void sendAsync(JSONObject fb_server, JSONObject message, int sleep) {
+        new Thread(() -> {
+            try {
+                Thread.sleep(sleep);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            Firebase._send(fb_server.getString("key_server"), message);
+            System.out.println(message);
+        }).start();
     }
 
 }

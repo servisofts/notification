@@ -87,19 +87,19 @@ public class NotificationDefault {
     }
     public static JSONObject getByTipo(String key_empresa, String tipo) {
         try {
+            
             String consulta = "select get_all('" + COMPONENT + "', 'key_empresa','"+key_empresa+"','tipo', '" +tipo + "') as json";
             JSONObject data = SPGConect.ejecutarConsultaObject(consulta);
 
-            if(JSONObject.getNames(data).length>0){
-                data = data.getJSONObject(JSONObject.getNames(data)[0]);
-            }else{
-                data = null;
+            if(JSONObject.getNames(data) != null){
+                return  data.getJSONObject(JSONObject.getNames(data)[0]);
             }
-            return data;
+
         } catch (Exception e) {
             e.printStackTrace();
-            return null;
+            
         }
+        return null;
     }
     public static JSONObject getByTipoServicio(String key_servicio, String tipo) {
         try {

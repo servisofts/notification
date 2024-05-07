@@ -18,6 +18,7 @@ public class Manejador {
         if (obj.isNull("component")) {
             return;
         }
+        
         switch (obj.getString("component")) {
             case FirebaseServer.COMPONENT: FirebaseServer.onMessage(obj, session); break;
             case FirebaseToken.COMPONENT: FirebaseToken.onMessage(obj, session); break;
